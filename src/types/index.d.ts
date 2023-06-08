@@ -22,6 +22,7 @@ declare module 'react-native-json-tree' {
     postprocessValue?: (value: Renderable) => any;
     sortObjectKeys?: boolean | ((a: Renderable, b: Renderable) => number);
     shouldExpandNode?: (_keyName: any, _data: any, level: number) => boolean;
+    onNodeExpanded?: (expanded: boolean, keyPath: any, data: any, level: number) => void;
     theme?: Theme;
     valueRenderer?: (value: Renderable | undefined) => ReactNode;
   }

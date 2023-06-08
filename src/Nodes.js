@@ -236,6 +236,7 @@ export class JSONNestedNode extends React.PureComponent {
     shouldExpandNode: PropTypes.func,
     sortObjectKeys: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     styling: PropTypes.func.isRequired,
+    onNodeExpanded: PropTypes.func,
   }
 
   static defaultProps = {
@@ -260,7 +261,14 @@ export class JSONNestedNode extends React.PureComponent {
     }
   }
 
-  handlePress = () => this.setState({ expanded: !this.state.expanded })
+  handlePress = () => {
+    const { onNodeExpanded, keyPath, data, level } = this.props
+    const { expanded } = this.state
+    this.setState({ expanded: !expanded })
+    if (onNodeExpanded) {
+      onNodeExpanded(!expanded, keyPath, data, level)
+    }
+  }
 
   render() {
     const {
